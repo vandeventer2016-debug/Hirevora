@@ -1,27 +1,9 @@
 'use client';
-import { ChangeEvent, DragEvent, useRef, useState } from 'react';
-
-export default function ResumeUpload({onText}:{onText:(text:string)=>void}) {
-  const input=useRef<HTMLInputElement>(null);
-  const [name,setName]=useState('');
-  const [note,setNote]=useState('PDF, DOC, DOCX or TXT');
-
-  async function handle(file?:File){
-    if(!file)return;
-    setName(file.name);
-    if(file.type==='text/plain'||file.name.toLowerCase().endsWith('.txt')){
-      onText(await file.text());
-      setNote('Resume loaded and ready to review.');
-    } else {
-      setNote('Resume selected. Document text extraction will process this file in the next processing step.');
-    }
-  }
-  function change(e:ChangeEvent<HTMLInputElement>){handle(e.target.files?.[0])}
-  function drop(e:DragEvent<HTMLDivElement>){e.preventDefault();handle(e.dataTransfer.files?.[0])}
-  return <div className="resumeUpload" onDragOver={e=>e.preventDefault()} onDrop={drop}>
-    <input ref={input} hidden type="file" accept=".pdf,.doc,.docx,.txt" onChange={change}/>
-    <button type="button" className="uploadButton" onClick={()=>input.current?.click()}>Upload existing resume</button>
-    <strong>{name||'Drop your resume here'}</strong>
-    <span>{note}</span>
-  </div>
+import {ChangeEvent,DragEvent,useRef,useState} from 'react';
+export default function ResumeUpload({onText}:{onText:(text:string)=>void}){
+ const input=useRef<HTMLInputElement>(null);const[name,setName]=useState('');const[note,setNote]=useState('PDF, DOCX or TXT');const[busy,setBusy]=useState(false);
+ async function extractPdf(file:File){const pdfjs=await import('pdfjs-dist');pdfjs.GlobalWorkerOptions.workerSrc='https://unpkg.com/pdfjs-dist@'+pdfjs.version+'/build/pdf.worker.min.mjs';const pdf=await pdfjs.getDocument({data:await file.arrayBuffer()}).promise;let text='';for(let i=1;i<=pdf.numPages;i++){const page=await pdf.getPage(i);const content=await page.getTextContent();text+=content.items.map((x:any)=>'str'in x?x.str:'').join(' ')+'\n';}return text;}
+ async function handle(file?:File){if(!file)return;setName(file.name);setBusy(true);setNote('Reading resume…');try{const n=file.name.toLowerCase();let text='';if(n.endsWith('.txt'))text=await file.text();else if(n.endsWith('.docx')){const mammoth=await import('mammoth/mammoth.browser');const result=await mammoth.extractRawText({arrayBuffer:await file.arrayBuffer()});text=result.value;}else if(n.endsWith('.pdf'))text=await extractPdf(file);else throw new Error('Please use PDF, DOCX, or TXT.');text=text.trim();if(text.length<30)throw new Error('I could not read enough text from that resume. Try another file or paste the text.');onText(text);setNote('Resume ready ✓ — extracted text is available below for review.');}catch(e){setNote(e instanceof Error?e.message:'Could not read this resume.');}finally{setBusy(false);}}
+ function change(e:ChangeEvent<HTMLInputElement>){void handle(e.target.files?.[0])}function drop(e:DragEvent<HTMLDivElement>){e.preventDefault();void handle(e.dataTransfer.files?.[0])}
+ return <div className="resumeUpload" onDragOver={e=>e.preventDefault()} onDrop={drop}><input ref={input} hidden type="file" accept=".pdf,.docx,.txt" onChange={change}/><button disabled={busy} type="button" className="uploadButton" onClick={()=>input.current?.click()}>{busy?'Reading resume…':'Upload existing resume'}</button><strong>{name||'Drop your resume here'}</strong><span>{note}</span></div>
 }
