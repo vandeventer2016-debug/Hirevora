@@ -1,5 +1,5 @@
 'use client';
-import {useMemo,useState} from 'react';
+import {useEffect,useMemo,useState} from 'react';
 import ResumeUpload from '../components/ResumeUpload';
 
 const stop=new Set('the a an and or to of in for with on at by from is are be as this that you your our we they their will can should must have has job role work experience skills years using about into'.split(' '));
@@ -9,6 +9,8 @@ function formatSalary(min:any,max:any){const a=Number(min)||0,b=Number(max)||0;i
 
 export default function Home(){
  const[title,setTitle]=useState('');const[location,setLocation]=useState('');const[locationMode,setLocationMode]=useState<'general'|'precise'>('general');const[radius,setRadius]=useState(25);const[remote,setRemote]=useState(false);const[resume,setResume]=useState('');const[searching,setSearching]=useState(false);const[jobs,setJobs]=useState<any[]>([]);const[job,setJob]=useState('');const[ran,setRan]=useState(false);const[error,setError]=useState('');
+ useEffect(()=>{try{const raw=sessionStorage.getItem('hirevora:searchState');if(!raw)return;const s=JSON.parse(raw);setTitle(s.title||'');setLocation(s.location||'');setLocationMode(s.locationMode==='precise'?'precise':'general');setRadius(Number(s.radius)||25);setRemote(Boolean(s.remote));setResume(s.resume||'');setJobs(Array.isArray(s.jobs)?s.jobs:[]);}catch{}},[]);
+ useEffect(()=>{try{sessionStorage.setItem('hirevora:searchState',JSON.stringify({title,location,locationMode,radius,remote,resume,jobs}))}catch{}},[title,location,locationMode,radius,remote,resume,jobs]);
  const result=useMemo(()=>{const jw=words(job),rw=new Set(words(resume));const matched=jw.filter(w=>rw.has(w));const missing=jw.filter(w=>!rw.has(w));return{score:jw.length?Math.round(matched.length/jw.length*100):0,matched:matched.slice(0,12),missing:missing.slice(0,12)}},[job,resume]);
  function useMyLocation(){if(!navigator.geolocation){alert('Location is not available in this browser.');return}navigator.geolocation.getCurrentPosition(p=>{setLocationMode('precise');setLocation(p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5));},()=>alert('Location permission was not granted. You can enter a city or ZIP code instead.'),{enableHighAccuracy:true,timeout:10000});}
  async function findJobs(){if(!title.trim()){alert('Add the job title you want to search for.');return}if(!remote&&!location.trim()){alert('Add a city or ZIP code, or choose Remote.');return}setSearching(true);setError('');try{const r=await fetch('/api/jobs',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({title,location,locationMode,radius,remote,resume})});const d=await r.json();setJobs(d.jobs||[]);if(d.setupRequired)alert('Job search is ready for its provider API key. Add the job-search credentials in Vercel to turn on live listings.');else if(!r.ok||d.error)setError(d.error||'Job search could not load right now.');}catch{setError('Job search could not load right now.')}finally{setSearching(false)}}
