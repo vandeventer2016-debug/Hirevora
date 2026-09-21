@@ -6,3 +6,28 @@ input{background:#090d13;color:#fff;border:1px solid #303947;border-radius:9px;p
 .rangeLabel{padding:14px 0}.rangeLabel>strong{text-align:right}.rangeLabel input[type=range]{width:100%;padding:0}.rangeEnds{display:flex;justify-content:space-between;color:#778291}.check{display:flex;grid-template-columns:22px 1fr;align-items:center;gap:10px;padding:8px 0}.check input{width:18px;height:18px}.secondaryFlow{border-top:1px solid #242a33}.secondaryFlow>div:last-child{display:grid;gap:15px}.secondaryFlow textarea{min-height:180px}
 .locationChoice{display:grid;grid-template-columns:1fr 1fr;gap:8px}.locationChoice button{background:#0b1017;color:#aab3c0;border:1px solid #303947}.locationChoice button.selected{background:#f5f7fa;color:#090c11}.locationChoice+input{width:100%}
 .jobResults{grid-column:1/-1;margin-top:30px;border-top:1px solid #28303c;padding-top:24px}.jobResults article{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid #28303c}.jobResults article h3{margin:5px 0}.jobResults article p,.jobResults article small{color:#8995a5}.jobResults article a{white-space:nowrap}
+
+/* Hirevora professional color system */
+:root{--bg:#f8fafc;--surface:#ffffff;--surface-soft:#f1f5f9;--navy:#0f172a;--text:#1e293b;--muted:#64748b;--line:#e2e8f0;--brand:#1d4ed8;--brand-dark:#1e40af;--focus:#3b82f6}
+body{background:var(--bg);color:var(--text)}
+nav{border-color:var(--line);color:var(--navy)}
+nav b{color:var(--navy)}
+nav a,.primary,button,.uploadButton{background:var(--brand);color:#fff}
+nav a:hover,.primary:hover,button:hover,.uploadButton:hover{background:var(--brand-dark)}
+.hero h1,.builder h2,.auth h1,.dash header h1,.jobResults h3{color:var(--navy)}
+.hero p,.builder p,.auth p,.dash header p,.grid p{color:var(--muted)}
+.pill{color:var(--brand);border-color:#bfdbfe;background:#eff6ff}
+.grid,.grid article,footer,.secondaryFlow,.jobResults,.jobResults article,.appList,.appList article{border-color:var(--line)}
+.grid small,.rangeEnds,.jobResults article p,.jobResults article small,.appList small,.appList span{color:var(--muted)}
+.builder form,.auth form,.results,.resumeUpload{background:var(--surface);border-color:var(--line);box-shadow:0 12px 35px rgba(15,23,42,.06)}
+label{color:#334155}
+input,textarea{background:var(--surface);color:var(--text);border-color:#cbd5e1}
+input:focus,textarea:focus{outline:3px solid rgba(59,130,246,.16);border-color:var(--focus)}
+form small,.score span,.results small,.results p,.resumeUpload span,.or{color:var(--muted)}
+.results,.score{border-color:var(--line)}
+.ghost,.secondary{background:transparent;color:var(--brand);border-color:#93c5fd}
+.locationChoice button{background:var(--surface);color:#475569;border-color:#cbd5e1}
+.locationChoice button.selected{background:var(--brand);color:#fff;border-color:var(--brand)}
+footer{color:var(--muted)}
+.jobResults article button,.applyButton{background:var(--brand);color:#fff;border-radius:8px;padding:13px 18px;font-weight:800;display:inline-block;white-space:nowrap}
+.jobResults article button:hover,.applyButton:hover{background:var(--brand-dark)}
