@@ -84,3 +84,22 @@ button,.searchButton,.applyButton{background:linear-gradient(90deg,#078eea,var(-
 .secondaryFlow{border-color:#dceaf6}
 .footerBrand{font-weight:900;color:var(--hv-navy);font-size:18px}
 @media(max-width:800px){.appHero{grid-template-columns:1fr;padding:65px 28px;margin:0 -18px;min-height:auto}.brandOrb{display:none}.appHero h1{font-size:55px}.appNav{margin:0 -18px;border-radius:0;padding:0 18px}}
+
+
+/* Layout correction: full-width centered Hirevora shell */
+html,body{width:100%;overflow-x:hidden}
+body{background:#f5faff}
+main{width:min(100% - 40px,1180px);max-width:none;margin:0 auto;padding:0}
+.appNav{width:100%;margin:0;padding:0 28px;border-radius:0 0 18px 18px}
+.appHero{width:100%;margin:0;padding:82px 70px;min-height:570px;border-radius:0 0 30px 30px;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr)}
+.appHero>div:first-child{max-width:610px}
+.appHero h1{font-size:clamp(58px,6.2vw,86px);line-height:.96;letter-spacing:-.055em}
+.brandOrb{width:280px;height:300px;border-radius:62px}
+.builder{width:100%;grid-template-columns:minmax(280px,.85fr) minmax(420px,1.15fr);gap:64px;padding:76px 28px}
+.builder>div:first-child{padding-top:8px}
+.builder form{width:100%;max-width:620px;justify-self:end}
+.jobResults{width:100%}
+.secondaryFlow{padding-left:28px;padding-right:28px}
+footer{padding-left:28px;padding-right:28px}
+@media(max-width:900px){main{width:min(100% - 24px,1180px)}.appHero{grid-template-columns:1fr;padding:70px 42px}.brandOrb{display:none}.builder{grid-template-columns:1fr;padding:60px 20px;gap:28px}.builder form{max-width:none;justify-self:stretch}}
+@media(max-width:600px){main{width:100%;padding:0 14px}.appNav{border-radius:0;margin:0;padding:0 16px}.appHero{margin:0;padding:55px 24px;border-radius:0 0 24px 24px}.appHero h1{font-size:50px}.builder{padding:52px 10px}.secondaryFlow{padding-left:10px;padding-right:10px}footer{padding-left:10px;padding-right:10px}}
