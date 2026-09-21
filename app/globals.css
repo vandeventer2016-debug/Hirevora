@@ -31,3 +31,22 @@ form small,.score span,.results small,.results p,.resumeUpload span,.or{color:va
 footer{color:var(--muted)}
 .jobResults article button,.applyButton{background:var(--brand);color:#fff;border-radius:8px;padding:13px 18px;font-weight:800;display:inline-block;white-space:nowrap}
 .jobResults article button:hover,.applyButton:hover{background:var(--brand-dark)}
+
+/* Navigation and clarity improvements */
+nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.96);backdrop-filter:blur(12px)}
+.brand{background:none!important;color:var(--navy)!important;padding:0!important;font-weight:900;font-size:20px;letter-spacing:.12em}
+.navLinks{display:flex;align-items:center;gap:8px}
+.navLinks a{background:transparent;color:#475569;padding:10px 12px;border-radius:8px;font-weight:700;letter-spacing:0}
+.navLinks a:hover{background:#e2e8f0;color:var(--navy)}
+.navLinks .navCta{background:var(--brand);color:#fff;padding:11px 17px}
+.hero{padding:88px 0 76px}
+.hero h1{font-size:clamp(52px,7vw,88px);line-height:1;max-width:820px}
+.steps{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0}
+.steps span{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);padding:11px 15px;border-radius:10px;color:#475569;font-weight:700}
+.steps b{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#dbeafe;color:var(--brand);font-size:13px}
+.startButton{display:inline-block;margin-top:4px}
+.builder{scroll-margin-top:95px}
+.builder form{box-shadow:0 10px 30px rgba(15,23,42,.07)}
+.jobResults article{background:#fff;padding:20px;margin:10px 0;border:1px solid var(--line);border-radius:12px}
+.jobResults article:hover{box-shadow:0 8px 24px rgba(15,23,42,.07);border-color:#bfdbfe}
+@media(max-width:760px){nav{height:auto;min-height:72px;padding:14px 0;align-items:flex-start}.navLinks{flex-wrap:wrap;justify-content:flex-end}.navLinks a:not(.navCta){font-size:12px;padding:7px}.hero{padding-top:60px}.steps{flex-direction:column;align-items:stretch}}
