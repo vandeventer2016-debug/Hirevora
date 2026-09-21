@@ -53,3 +53,34 @@ button:hover,.primary:hover,.applyButton:hover{transform:translateY(-1px);box-sh
 .secondaryFlow{margin-top:20px}
 footer{margin-top:35px}
 @media(max-width:760px){.builder>div:first-child{position:static}.hero:after{display:none}.builder form{padding:22px}.jobResults article{align-items:flex-start;flex-direction:column}.jobResults article button{width:100%}}
+
+
+/* Hirevora brand mockup integration */
+:root{--hv-navy:#0a2a5b;--hv-navy-deep:#061c3e;--hv-blue:#0ea5ff;--hv-cyan:#38bdf8;--hv-ice:#e6f3ff;--hv-ink:#1f2937;--hv-muted:#64748b}
+body{background:#f7fbff;color:var(--hv-ink)}
+main{max-width:1240px}
+.appNav{height:78px;background:linear-gradient(90deg,var(--hv-navy-deep),var(--hv-navy));border:0;border-radius:0 0 18px 18px;padding:0 26px;margin:0}
+.wordmark{font-size:25px;font-weight:800;letter-spacing:-.04em;color:#fff!important;background:transparent!important;padding:0!important;position:relative}
+.wordmark span{position:absolute;left:16%;right:5%;height:3px;bottom:-7px;background:linear-gradient(90deg,var(--hv-blue),var(--hv-cyan));border-radius:100% 0 100% 0;transform:skewX(-22deg)}
+.navSignIn{background:var(--hv-blue)!important;color:#fff!important;border-radius:10px!important}
+.appHero{min-height:520px;border-radius:0 0 32px 32px;margin:0 -28px;padding:88px 70px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:60px;background:radial-gradient(circle at 75% 20%,rgba(14,165,255,.28),transparent 28%),linear-gradient(135deg,var(--hv-navy-deep) 0%,var(--hv-navy) 70%,#064e89 100%);overflow:hidden}
+.appHero:after{width:520px;height:180px;right:-60px;top:auto;bottom:-70px;background:linear-gradient(135deg,var(--hv-blue),var(--hv-cyan));border-radius:50% 0 0 0;transform:rotate(-8deg);opacity:.9}
+.appHero .eyebrow{font-size:12px;letter-spacing:.25em;font-weight:800;color:#7dd3fc}
+.appHero h1{font-size:clamp(54px,7vw,88px);line-height:.95;color:#fff;margin:20px 0}
+.appHero p{color:#c9e7ff;font-size:19px;max-width:600px}
+.heroCta{display:inline-block;margin-top:24px;padding:15px 25px;border-radius:11px;background:var(--hv-blue);color:#fff;font-weight:800;box-shadow:0 12px 30px rgba(14,165,255,.25)}
+.brandOrb{justify-self:end;width:300px;height:300px;border-radius:72px;background:linear-gradient(145deg,#0d438b,var(--hv-navy-deep));box-shadow:0 25px 70px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;position:relative;z-index:2}
+.brandOrb strong{font-size:43px;letter-spacing:-.05em}.brandOrb i{width:150px;height:15px;border-top:6px solid var(--hv-cyan);border-radius:50%;margin-top:6px}.brandOrb small{font-size:10px;letter-spacing:.2em;color:#bae6fd;margin-top:26px}
+.builder{padding:82px 0}
+.builder form{border:0;box-shadow:0 20px 60px rgba(10,42,91,.1);background:#fff}
+.builder h2{color:var(--hv-navy-deep)}
+.pill{color:#0369a1;background:#e0f2fe;border-color:#bae6fd;font-weight:800}
+input,textarea{border-color:#cfe3f5}
+input:focus,textarea:focus{border-color:var(--hv-blue);outline:3px solid rgba(14,165,255,.14)}
+button,.searchButton,.applyButton{background:linear-gradient(90deg,#078eea,var(--hv-blue));color:#fff}
+.locationChoice button.selected{background:linear-gradient(90deg,#078eea,var(--hv-blue));border-color:var(--hv-blue)}
+.jobResults article{border-color:#dceaf6;box-shadow:0 8px 24px rgba(10,42,91,.06)}
+.jobResults article:hover{border-color:#7dd3fc;box-shadow:0 14px 34px rgba(10,42,91,.12)}
+.secondaryFlow{border-color:#dceaf6}
+.footerBrand{font-weight:900;color:var(--hv-navy);font-size:18px}
+@media(max-width:800px){.appHero{grid-template-columns:1fr;padding:65px 28px;margin:0 -18px;min-height:auto}.brandOrb{display:none}.appHero h1{font-size:55px}.appNav{margin:0 -18px;border-radius:0;padding:0 18px}}
